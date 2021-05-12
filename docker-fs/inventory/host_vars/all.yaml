@@ -1,0 +1,3 @@
+# assigns variables to all hosts
+# define files with the name of one host (for example: epyc.yaml) to define variables for specific hosts.
+

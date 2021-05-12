@@ -1,0 +1,3 @@
+# assigns variables to all hosts
+# define files with the name of the group (for example: vserv.yaml) to define variables for specific host groups.
+

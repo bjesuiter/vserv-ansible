@@ -1,9 +1,0 @@
-# Ansible Hosts file (a.k.a Inventory Definition) documentation 
-# https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups
-
-[vserv]
-
-# New AMD Epyc Servers on Netcup - since 27.6.2020
-45.129.181.140
-
-[vserv:vars]
