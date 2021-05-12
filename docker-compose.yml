@@ -1,0 +1,28 @@
+version: '3.8'
+
+# NOTE: Variables are filled in from .env file
+
+# run commands inside the ansible container with:
+# docker-compose run ansible bash
+#
+# if you want to run an ansible command, replace bash with ansible
+# (yes, two times ansible in a row, because the first parameter defines the service
+#  which should be called as defined in docker-compose
+#  and the second one defines the executable inside the service
+# )
+#
+# example command:
+# docker-compose run ansible ansible all -m ping -u you
+
+services:
+  ansible:
+    image: vservtech/ansible-controller-docker:latest
+    volumes:
+      # maps all things inside `workdir`, like inventory, etc.
+      - ${LOCAL_WORKDIR}/:${CONTAINER_WORKDIR}
+      - ${LOCAL_ASSETS}/ansible.cfg:${CONTAINER_ANSIBLE_ETC}/ansible.cfg
+      - ${LOCAL_ASSETS}/default-hosts.yaml:${CONTAINER_ANSIBLE_ETC}/hosts.yaml
+      - ${LOCAL_ASSETS}/.ssh/known_hosts:/root/.ssh/known_hosts
+
+      # maps all projects from this meta repo into /projects on the ansible-controller
+      - ../:/projects
