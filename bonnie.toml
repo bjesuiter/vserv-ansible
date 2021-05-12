@@ -4,11 +4,15 @@
 # run these scripts with bonnie in your path, 
 # for example: bonnie start
 
+# NOTE: These scripts use the new `docker compose` (without a dash) command
+# See: https://docs.docker.com/compose/cli-command/ 
+# And: https://docs.docker.com/compose/cli-command-compatibility/
+
 [scripts]
-start = "docker-compose up"
-stop = "docker-compose down"
+start = "docker compose up"
+stop = "docker compose down"
 # ansible = name of the service where we want to run something inside in docker-compose file
-exec = "docker-compose run ansible %%"
+exec = "docker compose run ansible %%"
 
 # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
 ansibleDoc = "bonnie exec ansible-doc %%"
