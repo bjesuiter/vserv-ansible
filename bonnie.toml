@@ -1,0 +1,19 @@
+# TOML Documentation: https://github.com/toml-lang/toml
+# How to use bonnie: https://dev.to/arctic_hen7/an-alternative-to-npm-and-yarn-scripts-bonnie-2idd
+
+# run these scripts with bonnie in your path, 
+# for example: bonnie start
+
+[scripts]
+start = "docker-compose up"
+stop = "docker-compose down"
+# ansible = name of the service where we want to run something inside in docker-compose file
+exec = "docker-compose run ansible %%"
+
+# Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
+ansibleDoc = "bonnie exec ansible-doc %%"
+playbook = "bonnie exec ansible-playbook -i inventory%%" # this inventory folder is mounted in docker-compose.yml from docer-fs/inventory
+
+# Ansible-Dock shortcuts
+lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
+manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
