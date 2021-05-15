@@ -12,10 +12,12 @@
 start = "echo 'This docker-compose does not need to be startet. Each exec will start it's own container.' "
 # ansible = name of the service where we want to run something inside in docker-compose file
 exec = "docker compose run -T --rm ansible %%"
+execInteractive = "docker compose run --rm ansible %%"
 
 # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
 ansible = "bonnie exec ansible -i inventory %%"
 ansibleDoc = "bonnie exec ansible-doc %%"
+ansibleVault = "bonnie exec ansible-vault %%"
 playbook = "bonnie exec ansible-playbook -i inventory %%" # this inventory folder is mounted in docker-compose.yml from docer-fs/inventory
 
 # Ansible shortcuts 
@@ -24,3 +26,11 @@ ping = "bonnie ansible all -m ping -u you"
 # Ansible-Doc shortcuts
 lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
 manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
+
+# Ansible-Vault shortcuts
+# Note: All filepaths given here must be referenced from 
+# CONTAINER_WORKDIR path in docker-comppose.yml or with absolute path! 
+createEnc = "bonnie ansibleVault create %%"
+encrypt = "bonnie ansibleVault encrypt %%"
+decrypt = "bonnie ansibleVault decrypt %%"
+viewEnc = "bonnie ansibleVault view %%"
