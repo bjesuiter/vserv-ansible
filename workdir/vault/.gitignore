@@ -1,1 +1,3 @@
-vserv.pass
+# This file contains plaintext password for encryptet files for vserv management
+# Make sure to not leak this file from the ansible-controller docker container! 
+./vserv.pass
