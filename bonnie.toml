@@ -9,15 +9,18 @@
 # And: https://docs.docker.com/compose/cli-command-compatibility/
 
 [scripts]
-start = "docker compose up"
-stop = "docker compose down"
+start = "echo 'This docker-compose does not need to be startet. Each exec will start it's own container.' "
 # ansible = name of the service where we want to run something inside in docker-compose file
-exec = "docker compose run ansible %%"
+exec = "docker compose run -T --rm ansible %%"
 
 # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
+ansible = "bonnie exec ansible -i inventory %%"
 ansibleDoc = "bonnie exec ansible-doc %%"
-playbook = "bonnie exec ansible-playbook -i inventory%%" # this inventory folder is mounted in docker-compose.yml from docer-fs/inventory
+playbook = "bonnie exec ansible-playbook -i inventory %%" # this inventory folder is mounted in docker-compose.yml from docer-fs/inventory
 
-# Ansible-Dock shortcuts
+# Ansible shortcuts 
+ping = "bonnie ansible all -m ping -u you"
+
+# Ansible-Doc shortcuts
 lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
 manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
