@@ -21,9 +21,20 @@ $ echo "password" > ~/.vault_pass
 $ chmod 600 ~/.vault_pass
 ```
 
-How to use it with various commands
+How to use it with various commands  
+Note: these commands are only available inside the ansible controller docker container.
+To use them from outside, use the shortcut `bonnie ansibleVault view|encrypt|decrypt|create|...`
+with any command specific options afterwards
 
 ```
-ansible-playbook -i inventory playbook.yaml --vault-password-file vault/vserv.pass
+# Encrypt file
+ansible-vault encrypt foo.yaml
 
+# View file
+ansible-vault view foo.yaml
+
+# Decrypt file
+ansible-vault decrypt foo.yaml
+
+ansible-playbook -i inventory playbook.yaml --vault-password-file vault/vserv.pass
 ```
