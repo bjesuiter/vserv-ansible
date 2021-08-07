@@ -12,7 +12,6 @@ vserv:
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: root
-    ansible_ssh_private_key_file: /root/.ssh/ansible@macos4vserv.key
 
 # Group of storage hosts
 storage:
@@ -25,4 +24,3 @@ storage:
   vars:
     ansible_python_interpreter: /usr/bin/python3
     ansible_user: root
-    ansible_ssh_private_key_file: /root/.ssh/ansible@macos4vserv.key
