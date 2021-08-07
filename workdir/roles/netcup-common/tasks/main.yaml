@@ -1,2 +1,2 @@
-- name: setup-ansible-target
-  import_tasks: setup-ansible-target.yaml
+- import_tasks: setup-ansible-target.yaml
+- import_tasks: setup-nodejs.yaml

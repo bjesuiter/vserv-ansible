@@ -1,0 +1,21 @@
+# Ensure node & npm is available
+- name: Remove old repository sources
+  apt_repository:
+    repo: 'ppa:chris-lea/node.js'
+    state: absent
+
+- name: Add NodeSource's official GPG Key
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+
+- name: Add NodeSources's desired source repository
+  apt_repository:
+    repo: deb https://deb.nodesource.com/node_14.x {{ansible_lsb['codename']}} main
+    update_cache: yes
+    state: present
+
+- name: Install Node.js Packages
+  ansible.builtin.apt:
+    name: 'nodejs'
+    state: latest
