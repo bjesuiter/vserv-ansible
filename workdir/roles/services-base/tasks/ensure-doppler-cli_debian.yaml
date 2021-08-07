@@ -1,0 +1,32 @@
+---
+- debug:
+    msg: 'Using ensure-doppler-cli_debian.yaml'
+
+- name: Update Package Index & install prerequisites
+  apt:
+    update_cache: true
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+    state: latest
+
+- name: Add Dopplers's official GPG Key
+  apt_key:
+    id: DE2A7741A397C129
+    url: https://packages.doppler.com/public/cli/gpg.DE2A7741A397C129.key
+    state: present
+
+- name: Add Dopplers's official stable repository
+  apt_repository:
+    repo: deb https://packages.doppler.com/public/cli/deb/debian any-version main
+    filename: doppler-cli.list
+    update_cache: yes
+    state: present
+
+- name: Install doppler-cli
+  apt:
+    name:
+      - doppler
+    state: latest
