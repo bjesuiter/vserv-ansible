@@ -10,7 +10,9 @@ vserv:
       # some_other_var: "some value"
       ansible_host: epyc.avil.io
   vars:
-    # some_var_for_all_hosts: value
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: root
+    ansible_ssh_private_key_file: /root/.ssh/ansible@macos4vserv.key
 
 # Group of storage hosts
 storage:
@@ -21,4 +23,6 @@ storage:
       # some_other_var: "some value"
       ansible_host: storage-1500.avil.io
   vars:
-    # some_var_for_all_hosts: value
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: root
+    ansible_ssh_private_key_file: /root/.ssh/ansible@macos4vserv.key

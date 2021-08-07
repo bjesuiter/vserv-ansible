@@ -14,23 +14,23 @@ start = "echo 'This docker-compose does not need to be startet. Each exec will s
 # Scripts for setup after cloning this repo
 # Note: doppler scripts need configured doppler-cli on the host machine (doppler login & doppler setup) 
 setupVservPass = "doppler secrets substitute assets/vault_config/vserv.pass.placeholder --output assets/vault_config/vserv.pass"
-getEncryptedSshKey = "doppler secrets substitute assets/.ssh/ansible@macos4vserv.placeholder --output assets/.ssh/ansible@macos4vserv"
-decryptSshKey = "bonnie decrypt /root/.ssh/ansible@macos4vserv"
+ssh-download = "doppler secrets substitute assets/.ssh/ansible@macos4vserv.placeholder --output assets/.ssh/ansible@macos4vserv.key"
+ssh-decrypt = "bonnie decrypt /root/.ssh/ansible@macos4vserv.key"
+ssh-fix-permissions = "chmod 600 assets/.ssh/ansible@macos4vserv.key"
 # if needed: 
-encryptSshKey = "bonnie encrypt /root/.ssh/ansible@macos4vserv"
+ssh-encrypt = "bonnie encrypt /root/.ssh/ansible@macos4vserv.key"
 
 # ansible = name of the service where we want to run something inside in docker-compose file
 exec = "docker compose run -T --rm ansible %%"
 execInteractive = "docker compose run --rm ansible %%"
 
 # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
-ansible = "bonnie exec ansible -i inventory %%"
+ansible = "bonnie exec ansible %%"
 ansibleDoc = "bonnie exec ansible-doc %%"
 ansibleVault = "bonnie exec ansible-vault %%"
-playbook = "bonnie exec ansible-playbook -i inventory %%" # this inventory folder is mounted in docker-compose.yml from docer-fs/inventory
-
+playbook = "bonnie exec ansible-playbook -i inventory %%"
 # Ansible shortcuts 
-ping = "bonnie ansible all -m ping -u you"
+ping = "bonnie ansible all -m ping"
 
 # Ansible-Doc shortcuts
 lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
