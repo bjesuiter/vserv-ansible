@@ -1,3 +1,4 @@
+---
 # Ensure node & npm is available
 - name: Remove old repository sources
   apt_repository:
