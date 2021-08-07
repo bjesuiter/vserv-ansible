@@ -2,3 +2,4 @@
 - hosts: storage
   roles:
     - netcup-base
+    - services-base
