@@ -13,7 +13,7 @@ start = "echo 'This docker-compose does not need to be startet. Each exec will s
 
 # Scripts for setup after cloning this repo
 # Note: doppler scripts need configured doppler-cli on the host machine (doppler login & doppler setup) 
-setupVservPass = "doppler secrets substitute assets/vault_config/vserv.pass.skeleton --output assets/vault_config/vserv.pass"
+setupVservPass = "doppler secrets substitute assets/vault_config/vserv.pass.placeholder --output assets/vault_config/vserv.pass"
 
 # ansible = name of the service where we want to run something inside in docker-compose file
 exec = "docker compose run -T --rm ansible %%"
