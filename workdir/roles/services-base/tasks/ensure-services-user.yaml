@@ -1,0 +1,56 @@
+ - name: Setup jb-web-services user for running my services in
+      user:
+        name: jb-web-services
+        comment: Deployment user for jb web services
+        shell: /usr/bin/bash
+        password_lock: true
+        create_home: true
+        skeleton: '/home/_skeleton'
+        generate_ssh_key: yes
+        ssh_key_type: ed25519
+        ssh_key_file: .ssh/id_rsa
+        groups:
+          - docker
+        state: present
+      register: jb_web_service_user_creation
+    - debug:
+        msg:
+          - 'IMPORTANT: Please register this public key for jb-web-services with all repositories which should be deployed to this server!'
+          - '{{jb_web_service_user_creation.ssh_public_key}}'
+    ###
+    # Dev Note:
+    # Check manually whether the ssh key is set up properly by doing:
+    # 1. Add the public key from this debug message to the relevant git repos, for example git@bitbucket.org:bnware/vserv-meta.git
+    # 2. log into the epyc server as root
+    # 3. call 'su - jb-web-services'
+    # 4. call 'git ls-remote git@bitbucket.org:bnware/vserv-meta.git'
+    # This should succeed
+    ###
+
+       ### Add private deployment key for jb-web-services
+    - name: Create a directory if it does not exist
+      file:
+        path: /home/jb-web-services/.ssh
+        state: directory
+        mode: '0700'
+      become: yes
+      become_user: jb-web-services
+
+    - name: Copy .ssh files to jb-web-services user
+      copy:
+        src: '{{ item.src }}'
+        dest: '{{ item.dest }}'
+        owner: 'jb-web-services'
+        group: 'jb-web-services'
+        mode: '{{ item.mode }}'
+      become: yes
+      become_user: jb-web-services
+      with_items:
+        - src: '{{ role_path }}/files/user-skeletons/jb-web-services/.ssh/known_hosts'
+          dest: '/home/jb-web-services/.ssh/known_hosts'
+          mode: '0600'
+        - src: '{{ role_path }}/files/user-skeletons/jb-web-services/.ssh/config'
+          dest: '/home/jb-web-services/.ssh/config'
+          mode: '0644'
+
+    
