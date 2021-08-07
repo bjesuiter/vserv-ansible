@@ -14,6 +14,10 @@ start = "echo 'This docker-compose does not need to be startet. Each exec will s
 # Scripts for setup after cloning this repo
 # Note: doppler scripts need configured doppler-cli on the host machine (doppler login & doppler setup) 
 setupVservPass = "doppler secrets substitute assets/vault_config/vserv.pass.placeholder --output assets/vault_config/vserv.pass"
+getEncryptedSshKey = "doppler secrets substitute assets/.ssh/ansible@macos4vserv.placeholder --output assets/.ssh/ansible@macos4vserv"
+decryptSshKey = "bonnie decrypt /root/.ssh/ansible@macos4vserv"
+# if needed: 
+encryptSshKey = "bonnie encrypt /root/.ssh/ansible@macos4vserv"
 
 # ansible = name of the service where we want to run something inside in docker-compose file
 exec = "docker compose run -T --rm ansible %%"
