@@ -28,7 +28,11 @@ execInteractive = "docker compose run --rm ansible %%"
 ansible = "bonnie exec ansible %%"
 ansibleDoc = "bonnie exec ansible-doc %%"
 ansibleVault = "bonnie exec ansible-vault %%"
-playbook = "bonnie exec ansible-playbook -i inventory %%"
+playbook = "bonnie exec ansible-playbook %%"
+
+# Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
+setup-storage = "bonnie playbook playbooks/storage-vserv.yaml"
+
 # Ansible shortcuts 
 ping = "bonnie ansible all -m ping"
 
