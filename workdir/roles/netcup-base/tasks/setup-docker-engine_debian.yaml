@@ -1,6 +1,9 @@
 ---
 # Documentation: https://docs.docker.com/engine/install/debian/
 
+- debug:
+    msg: 'Using setup-docker-engine_debian.yaml'
+
 - name: ensure OLD docker versions are NOT INSTALLED
   apt:
     name:
@@ -72,14 +75,16 @@
     name: helloWorldDemo-Container
     container_default_behavior: no_defaults
     detach: false
-    auto_remove: true
+    # auto_remove must be false, otherwise output cannot be gathered in the next debug step
+    auto_remove: false
     interactive: false
-  register: docker_container_out
+  register: hello_world_output
 
 - debug:
-    var: docker_container_out.ansible_facts.docker_container.Output
+    var: hello_world_output.container.Output
 
 - name: ensure docker hello-world container is absent
   community.docker.docker_container:
+    container_default_behavior: no_defaults
     state: absent
     name: helloWorldDemo-Container

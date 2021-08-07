@@ -1,6 +1,9 @@
 ---
 # Documentation: https://docs.docker.com/engine/install/ubuntu/
 
+- debug:
+    msg: 'Using setup-docker-engine_ubuntu.yaml'
+
 - name: ensure OLD docker versions are NOT INSTALLED
   apt:
     name:
@@ -73,7 +76,7 @@
   register: docker_container_out
 
 - debug:
-    var: docker_container_out.ansible_facts.docker_container.Output
+    var: docker_container_out.container.Output
 
 - name: remove docker hello-world container
   docker_container:
