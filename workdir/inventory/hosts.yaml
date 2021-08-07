@@ -5,22 +5,17 @@
 vserv:
   # List of hosts for that group (children keys: urls of the hosts)
   hosts:
+    # Host alias: epyc
     epyc:
       # New AMD Epyc Servers on Netcup - since 27.6.2020
-      # some_other_var: "some value"
       ansible_host: epyc.avil.io
+      # some_other_var: "some value"
   vars:
-    ansible_python_interpreter: /usr/bin/python3
-    ansible_user: root
+    # some_group_var: "some value"
 
 # Group of storage hosts
 storage:
-  # List of hosts for that group (children keys: urls of the hosts)
   hosts:
-    storage-1500.avil.io:
+    storage-1500:
       # New 1,5 TB SAS Storage Server at Netcup - since 11.05.2021
-      # some_other_var: "some value"
       ansible_host: storage-1500.avil.io
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-    ansible_user: root
