@@ -36,16 +36,31 @@ To use them from outside, use the shortcut `bonnie ansibleVault view|encrypt|dec
 with any command specific options afterwards
 
 ```
-# Encrypt file
+# Encrypt some file
 ansible-vault encrypt foo.yaml
 
-# View file
+# View some encrypted file
 ansible-vault view foo.yaml
 
-# Decrypt file
+# Decrypt some file
 ansible-vault decrypt foo.yaml
 
+# This is only for illustration, the main vault password file is mapped via absolute path in assets/ansible.cfg
 ansible-playbook -i inventory playbook.yaml --vault-password-file vault/vserv.pass
+```
+
+### Example for using encrypted files with ansible
+
+```
+---
+- hosts: host.domain.tld
+  vars:
+    - private_key: "{{ lookup('file', 'files/private.pem') }}"
+  tasks:
+    - name: Place certs on systems
+      copy: content={{ item.content }} dest=/etc/pki/tls/certs/{{ item.dest }} owner=root group=root mode={{ item.mode }}
+      with_items:
+        - { content: "{{ private_key }}", dest: 'private.pem', mode: '0600' }
 ```
 
 ## TODOs
