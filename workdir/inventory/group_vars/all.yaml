@@ -4,4 +4,4 @@
 all:
   ansible_python_interpreter: /usr/bin/python3
   ansible_user: root
-  ansible_ssh_private_key_file:
+  ansible_ssh_private_key_file: ~/.ssh/ansible@macos4vserv
