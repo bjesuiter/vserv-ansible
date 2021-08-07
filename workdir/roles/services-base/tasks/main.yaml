@@ -6,3 +6,8 @@
   include: ensure-services-filestructure.yaml
   become: yes
   become_user: jb-web-services
+
+- include: ensure-doppler-cli_debian.yaml
+# - include: ensure-traefik.yaml
+#   become: yes
+#   become_user: jb-web-services
