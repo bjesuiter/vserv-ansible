@@ -63,6 +63,15 @@ ansible-playbook -i inventory playbook.yaml --vault-password-file vault/vserv.pa
         - { content: "{{ private_key }}", dest: 'private.pem', mode: '0600' }
 ```
 
+## How to write playbooks - Examples
+
+[Playbook Example: Continuous Delivery and Rolling Upgrades
+](https://docs.ansible.com/ansible/latest/user_guide/guide_rolling_upgrade.html#reusable-content-roles)
+
+### Details: How to write taks files for roles
+
+[Role directory structure](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#role-directory-structure)
+
 ## TODOs
 
 - define a new ssh key, called vserv-admin
