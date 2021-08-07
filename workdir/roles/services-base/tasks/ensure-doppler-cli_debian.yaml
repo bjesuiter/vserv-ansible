@@ -30,3 +30,11 @@
     name:
       - doppler
     state: latest
+
+- name: Verify doppler-cli installations
+  command:
+    cmd: 'doppler --version'
+  register: doppler_version
+
+- debug:
+    var: doppler_version.stdout
