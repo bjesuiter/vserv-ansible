@@ -1,18 +1,24 @@
 # Ansible Hosts file (a.k.a Inventory Definition) documentation
 # https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#inventory-basics-formats-hosts-and-groups
 
+# Group of vserv hosts
 vserv:
+  # List of hosts for that group (children keys: urls of the hosts)
   hosts:
     epyc:
       # New AMD Epyc Servers on Netcup - since 27.6.2020
+      # some_other_var: "some value"
       ansible_host: epyc.avil.io
   vars:
-    # fill in key: value vars
+    # some_var_for_all_hosts: value
 
+# Group of storage hosts
 storage:
+  # List of hosts for that group (children keys: urls of the hosts)
   hosts:
     storage-1500.avil.io:
       # New 1,5 TB SAS Storage Server at Netcup - since 11.05.2021
-      ansible_host: epyc.avil.io
+      # some_other_var: "some value"
+      ansible_host: storage-1500.avil.io
   vars:
-    # fill in key: value vars
+    # some_var_for_all_hosts: value
