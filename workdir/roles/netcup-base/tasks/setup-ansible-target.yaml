@@ -1,5 +1,7 @@
 ---
-- name: ensure python3-pip is installed and latest
-  ansible.builtin.apt:
-    name: python3-pip
+- name: ensure python dependencies are installed and latest
+  apt:
+    name:
+      - python3-pip
+      - python3-apt
     state: latest
