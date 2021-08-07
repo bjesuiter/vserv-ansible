@@ -1,0 +1,23 @@
+- name: Ensure 'services' folder exists
+  file:
+    path: /home/jb-web-services/services
+    state: directory
+    mode: '0700'
+
+- name: Ensure 'data' folder exists
+  file:
+    path: /home/jb-web-services/data
+    state: directory
+    mode: '0770'
+
+- name: Ensure 'media' folder exists
+  file:
+    path: /home/jb-web-services/media
+    state: directory
+    mode: '0772'
+
+- name: Ensure 'backups' folder exists
+  file:
+    path: /home/jb-web-services/backups
+    state: directory
+    mode: '0772'

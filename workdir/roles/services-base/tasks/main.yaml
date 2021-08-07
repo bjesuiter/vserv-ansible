@@ -1,3 +1,8 @@
 ---
 - name: ensure jb-web-services user
   import_tasks: ensure-services-user.yaml
+
+- name: ensure common filestructure for jb-web-services user
+  include: ensure-services-filestructure.yaml
+  become: yes
+  become_user: jb-web-services
