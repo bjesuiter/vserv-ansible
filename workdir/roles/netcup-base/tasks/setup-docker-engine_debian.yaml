@@ -1,0 +1,85 @@
+---
+# Documentation: https://docs.docker.com/engine/install/debian/
+
+- name: ensure OLD docker versions are NOT INSTALLED
+  apt:
+    name:
+      - docker
+      - docker-engine
+      - docker.io
+      - containerd
+      - runc
+    state: absent
+
+- name: Update Package Index & install prerequisites
+  apt:
+    update_cache: true
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: latest
+
+- name: Add Docker's official GPG Key
+  apt_key:
+    # Human Form: 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    url: https://download.docker.com/linux/debian/gpg
+    keyring: /usr/share/keyrings/docker-archive-keyring.gpg
+    state: present
+
+- name: Display OS Release version
+  debug:
+    var: ansible_lsb['release']
+
+- name: Add Docker's official stable repository
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian {{ansible_lsb['codename']}} stable
+    update_cache: yes
+    state: present
+
+  # register: add_repo
+  # until: add_repo|success
+  # retries: 3
+- name: Install docker engine
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: latest
+
+- name: Install python adapter to controll docker
+  pip:
+    name: docker
+    state: latest
+
+- name: Install python adapter to controll docker-compose
+  pip:
+    name: docker-compose
+    state: latest
+
+###
+# Documentation for managing docker with ansible:
+# https://docs.ansible.com/ansible/latest/scenario_guides/guide_docker.html
+# https://docs.ansible.com/ansible/latest/modules/docker_container_module.html
+###
+- name: check docker availability by running hello-world docker container
+  community.docker.docker_container:
+    image: hello-world
+    name: helloWorldDemo-Container
+    container_default_behavior: no_defaults
+    detach: false
+    auto_remove: true
+    interactive: false
+  register: docker_container_out
+
+- debug:
+    var: docker_container_out.ansible_facts.docker_container.Output
+
+- name: ensure docker hello-world container is absent
+  community.docker.docker_container:
+    state: absent
+    name: helloWorldDemo-Container
