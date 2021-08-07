@@ -20,10 +20,14 @@ services:
     volumes:
       # maps all things inside `workdir`, like inventory, etc.
       - ${LOCAL_WORKDIR}/:${CONTAINER_WORKDIR}
+
+      # map special ansible config dirs and files
       - ${LOCAL_ASSETS}/ansible.cfg:${CONTAINER_ANSIBLE_ETC}/ansible.cfg
       - ${LOCAL_ASSETS}/vault_config/:${CONTAINER_ANSIBLE_ETC}/vault_config
       - ${LOCAL_ASSETS}/default-hosts.yaml:${CONTAINER_ANSIBLE_ETC}/hosts.yaml
-      - ${LOCAL_ASSETS}/.ssh/known_hosts:/root/.ssh/known_hosts
+
+      # map complete assets/.ssh folder
+      - ${LOCAL_ASSETS}/.ssh/:/root/.ssh
 
       # maps all projects from this meta repo into /projects on the ansible-controller
       - ../:/projects
