@@ -8,6 +8,7 @@ vserv:
     # Host alias: epyc
     epyc:
       # New AMD Epyc Servers on Netcup - since 27.6.2020
+      # see https://www.servercontrolpanel.de/SCP/Home?site_key=ubgkZtY5TSwrgyW2Gy1xhQXKH9bE3Hkh
       ansible_host: epyc.avil.io
       # some_other_var: "some value"
   vars:
