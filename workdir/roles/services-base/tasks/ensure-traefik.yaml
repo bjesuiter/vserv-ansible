@@ -21,7 +21,19 @@
     modification_time: preserve
     access_time: preserve
 
-- name: Create and start traefik
-  docker_compose:
-    project_src: /home/jb-web-services/services/traefik/
-  register: traefik_compose_output
+- name: Setup doppler cli for this project
+  command: 'doppler setup --token={{traefik_doppler_token}} --no-prompt'
+  register: doppler_result
+
+- debug: var=doppler_result
+
+- name: run traefik via npm
+  command: npm start
+  register: npm_result
+
+- debug: var=npm_result
+# Old way to start traefik (problem: doppler cli will not be started with it)
+# - name: Create and start traefik
+#   docker_compose:
+#     project_src: /home/jb-web-services/services/traefik/
+#   register: traefik_compose_output
