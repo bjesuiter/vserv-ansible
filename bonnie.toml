@@ -41,7 +41,8 @@ ping = "bonnie ansible all -m ping"
 lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
 manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
 
-# Ansible-Vault shortcuts
+# General Ansible-Vault shortcuts
+# -------------------------------
 # Note: All filepaths given here must be referenced from 
 # CONTAINER_WORKDIR path in docker-comppose.yml or with absolute path! 
 
@@ -52,8 +53,14 @@ manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
 # - place your cleartext file (for example: an ansible yaml file with variables)
 #   somewhere where it's accessible to ansible inside the docker contaienr. 
 #   (easiest place: directly in workdir) 
-# - alternatively: navigate from the workdir folder, for example: 
-#   bonnie encrypt roles/services-base/vars/traefik-secrets.yaml
+# - alternatively: navigate from the workdir folder, see for example: 
+#   bonnie view-traefik-vault
 encrypt = "bonnie ansibleVault encrypt %%"
 decrypt = "bonnie ansibleVault decrypt %%"
-viewEnc = "bonnie ansibleVault view %%"
+view-vault = "bonnie ansibleVault view %%"
+
+# Special Ansible-Vault shortcuts
+# -------------------------------
+view-traefik-vault = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
+enc-traefik-vault = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
+dec-traefik-vault = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
