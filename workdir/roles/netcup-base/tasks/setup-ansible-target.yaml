@@ -4,4 +4,5 @@
     name:
       - python3-pip
       - python3-apt
+      - nano
     state: latest
