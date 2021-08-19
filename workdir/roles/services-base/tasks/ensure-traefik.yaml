@@ -1,10 +1,11 @@
 ---
 - include_vars: traefik-vault.yaml
+- include_vars: traefik-settings.yaml
 
 - name: Clone Traefik Repo
   git:
     repo: 'git@github.com:bjesuiter/vserv-traefik.git'
-    dest: /home/jb-web-services/services/traefik
+    dest: '{{traefik_root}}'
     version: 'main'
     # update disabled because ./docker/acme.json will be altered by running the traefik docker-compose
     # TODO: Test updateability again
@@ -16,7 +17,7 @@
 
 - name: ensure file availability of acme.json
   file:
-    path: /home/jb-web-services/services/traefik/docker/acme.json
+    path: '{{traefik_root}}/docker/acme.json'
     state: touch
     # 0600 mode is needed by traefik to be sure, this certificate storage file is not tampered with
     mode: '0600'
@@ -27,13 +28,15 @@
 # https://gist.github.com/tristanfisher/e5a306144a637dc739e7
 # password for that encrypted file is configured in root ansible.cfg
 - name: Setup doppler cli for this project
-  command: 'doppler setup --token={{traefik_doppler_token}} --no-prompt'
+  command:
+    chdir: '{{traefik_root}}'
+    cmd: 'doppler setup --token={{traefik_doppler_token}} --no-prompt'
   register: doppler_result
 
 - name: run traefik via npm
   command:
     cmd: npm start
-    chdir: /home/jb-web-services/services/traefik/
+    chdir: '{{traefik_root}}'
   register: npm_result
 # Old way to start traefik (problem: doppler cli will not be started with it)
 # - name: Create and start traefik
