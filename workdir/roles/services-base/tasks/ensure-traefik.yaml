@@ -7,8 +7,6 @@
     repo: 'git@github.com:bjesuiter/vserv-traefik.git'
     dest: '{{traefik_root}}'
     version: 'main'
-    # update disabled because ./docker/acme.json will be altered by running the traefik docker-compose
-    # TODO: Test updateability again
     update: 'yes'
 
 - name: Create traefik network for web accessability
