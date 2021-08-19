@@ -1,0 +1,19 @@
+###
+# This Playbook should secure a netcup hosted root kvm virtualized vm after initial setup
+# CAUTION: This taskfile is work in progres! (WIP)
+###
+
+---
+- name: secure-vm setup-sshd
+  hosts: vserv
+  # a list of tasks to define the state of the target machines
+  tasks:
+    - name: move ssh from port 22 to port 822
+    # TODO: finish
+    - name: add an 'ansible' public ssh key to the root user, so that login for ansible is still possible
+    # TODO: finish
+    - name: disable the password for root
+    # TODO: finish
+    - name: disable ssh password auth
+    # TODO: finish
+    ### IDEA: Copy a sshd config file from local to the target servers
