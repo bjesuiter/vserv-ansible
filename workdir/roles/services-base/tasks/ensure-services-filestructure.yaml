@@ -1,3 +1,9 @@
+###
+# Dev Notes
+# - Make sure that each repo which should be installed has the deployment publickey installed!
+#   See output of ensure-services-user.yaml for the correct public key per machine!
+###
+---
 - name: Ensure 'services' folder exists
   file:
     path: /home/jb-web-services/services
