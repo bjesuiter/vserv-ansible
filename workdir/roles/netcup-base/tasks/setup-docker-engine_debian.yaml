@@ -75,7 +75,8 @@
     name: helloWorldDemo-Container
     container_default_behavior: no_defaults
     detach: false
-    # auto_remove must be false, otherwise output cannot be gathered in the next debug step
+    # auto_remove must be false,
+    # otherwise output cannot be gathered in the next debug step
     auto_remove: false
     interactive: false
   register: hello_world_output
