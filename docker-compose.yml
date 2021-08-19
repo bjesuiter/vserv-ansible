@@ -29,4 +29,6 @@ services:
       - ${LOCAL_ASSETS}/.ssh/:/root/.ssh
 
       # maps all projects from this meta repo into /projects on the ansible-controller
+      # Example path to ansible playbooks:
+      # bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml
       - ../:/projects
