@@ -1,0 +1,27 @@
+---
+- name: Clone Traefik Repo
+  git:
+    repo: 'git@github.com:bjesuiter/vserv-traefik.git'
+    dest: /home/jb-web-services/services/traefik
+    version: 'main'
+    # update disabled because ./docker/acme.json will be altered by running the traefik docker-compose
+    # TODO: Test updateability again
+    update: 'yes'
+
+- name: Create traefik network for web accessability
+  docker_network:
+    name: web
+
+- name: ensure file availability of acme.json
+  file:
+    path: /home/jb-web-services/services/traefik/docker/acme.json
+    state: touch
+    # 0600 mode is needed by traefik to be sure, this certificate storage file is not tampered with
+    mode: '0600'
+    modification_time: preserve
+    access_time: preserve
+
+- name: Create and start traefik
+  docker_compose:
+    project_src: /home/jb-web-services/services/traefik/
+  register: traefik_compose_output
