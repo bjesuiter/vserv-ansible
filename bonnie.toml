@@ -9,58 +9,58 @@
 # And: https://docs.docker.com/compose/cli-command-compatibility/
 
 [scripts]
-start = "echo 'This docker-compose does not need to be startet. Each exec will start it's own container.' "
+    start = "echo 'This docker-compose does not need to be startet. Each exec will start it's own container.' "
 
-# Scripts for setup after cloning this repo
-# Note: doppler scripts need configured doppler-cli on the host machine (doppler login & doppler setup) 
-setupVservPass = "doppler secrets substitute assets/vault_config/vserv.pass.placeholder --output assets/vault_config/vserv.pass"
-ssh-download = "doppler secrets substitute assets/.ssh/ansible@macos4vserv.placeholder --output assets/.ssh/ansible@macos4vserv.key"
-ssh-decrypt = "bonnie decrypt /root/.ssh/ansible@macos4vserv.key"
-ssh-fix-permissions = "chmod 600 assets/.ssh/ansible@macos4vserv.key"
-# if needed: 
-ssh-encrypt = "bonnie encrypt /root/.ssh/ansible@macos4vserv.key"
+    # Scripts for setup after cloning this repo
+    # Note: doppler scripts need configured doppler-cli on the host machine (doppler login & doppler setup) 
+    setupVservPass      = "doppler secrets substitute assets/vault_config/vserv.pass.placeholder --output assets/vault_config/vserv.pass"
+    ssh-download        = "doppler secrets substitute assets/.ssh/ansible@macos4vserv.placeholder --output assets/.ssh/ansible@macos4vserv.key"
+    ssh-decrypt         = "bonnie decrypt /root/.ssh/ansible@macos4vserv.key"
+    ssh-fix-permissions = "chmod 600 assets/.ssh/ansible@macos4vserv.key"
+    # if needed: 
+    ssh-encrypt = "bonnie encrypt /root/.ssh/ansible@macos4vserv.key"
 
-# ansible = name of the service where we want to run something inside in docker-compose file
-exec = "docker compose run -T --rm ansible %%"
-# docker compose run is iteractive (-it) by default!
-execInteractive = "docker compose run --rm ansible %%"
+    # ansible = name of the service where we want to run something inside in docker-compose file
+    exec = "docker compose run -T --rm ansible %%"
+    # docker compose run is iteractive (-it) by default!
+    execInteractive = "docker compose run --rm ansible %%"
 
-# Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
-ansible = "bonnie exec ansible %%"
-ansibleDoc = "bonnie exec ansible-doc %%"
-ansibleVault = "bonnie execInteractive ansible-vault %%"
-playbook = "bonnie exec ansible-playbook %%"
+    # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
+    ansible      = "bonnie exec ansible %%"
+    ansibleDoc   = "bonnie exec ansible-doc %%"
+    ansibleVault = "bonnie execInteractive ansible-vault %%"
+    playbook     = "bonnie exec ansible-playbook %%"
 
-# Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
-setup-storage = "bonnie playbook playbooks/storage-vserv.yaml"
+    # Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
+    init-storage = "bonnie playbook playbooks/storage-1500-init.yaml"
 
-# Ansible shortcuts 
-ping = "bonnie ansible all -m ping"
+    # Ansible shortcuts 
+    ping = "bonnie ansible all -m ping"
 
-# Ansible-Doc shortcuts
-lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
-manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
+    # Ansible-Doc shortcuts
+    lsInventoryPlugins = "bonnie ansibleDoc -t inventory -l"
+    manTomlInventory   = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
 
-# General Ansible-Vault shortcuts
-# -------------------------------
-# Note: All filepaths given here must be referenced from 
-# CONTAINER_WORKDIR path in docker-comppose.yml or with absolute path! 
+    # General Ansible-Vault shortcuts
+    # -------------------------------
+    # Note: All filepaths given here must be referenced from 
+    # CONTAINER_WORKDIR path in docker-comppose.yml or with absolute path! 
 
-# Note 2: Do not use "bonnie ansibleVault create %%", since it requires manual input of the file content for the encrypted file
-# Better: Create a yaml vars file and simply encrypt it with "bonnie encrypt"
+    # Note 2: Do not use "bonnie ansibleVault create %%", since it requires manual input of the file content for the encrypted file
+    # Better: Create a yaml vars file and simply encrypt it with "bonnie encrypt"
 
-# How2 use encrypted files: 
-# - place your cleartext file (for example: an ansible yaml file with variables)
-#   somewhere where it's accessible to ansible inside the docker contaienr. 
-#   (easiest place: directly in workdir) 
-# - alternatively: navigate from the workdir folder, see for example: 
-#   bonnie view-traefik-vault
-encrypt = "bonnie ansibleVault encrypt %%"
-decrypt = "bonnie ansibleVault decrypt %%"
-view-vault = "bonnie ansibleVault view %%"
+    # How2 use encrypted files: 
+    # - place your cleartext file (for example: an ansible yaml file with variables)
+    #   somewhere where it's accessible to ansible inside the docker contaienr. 
+    #   (easiest place: directly in workdir) 
+    # - alternatively: navigate from the workdir folder, see for example: 
+    #   bonnie view-traefik-vault
+    encrypt    = "bonnie ansibleVault encrypt %%"
+    decrypt    = "bonnie ansibleVault decrypt %%"
+    view-vault = "bonnie ansibleVault view %%"
 
-# Special Ansible-Vault shortcuts
-# -------------------------------
-view-traefik-vault = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
-enc-traefik-vault = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
-dec-traefik-vault = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
+    # Special Ansible-Vault shortcuts
+    # -------------------------------
+    view-traefik-vault = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
+    enc-traefik-vault  = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
+    dec-traefik-vault  = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"

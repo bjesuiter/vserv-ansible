@@ -1,5 +1,5 @@
 ---
-- hosts: storage
+- hosts: storage-1500
   vars:
     # https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-access-shell-environment-variables
     # does not work right now
