@@ -1,0 +1,21 @@
+---
+- hosts: epyc
+  vars:
+    # https://docs.ansible.com/ansible/latest/reference_appendices/faq.html#how-do-i-access-shell-environment-variables
+    # does not work right now
+    # skip_netcup_base: "lookup('env', 'SKIP_NETCUP_BASE') | default('false')"
+    # skip_service_base: "lookup('env', 'SKIP_SERVICE_BASE') | default('false')"
+    skip_netcup_base: false
+    skip_service_base: true
+
+  pre_tasks:
+    - debug:
+        var: skip_netcup_base
+    - debug:
+        var: skip_service_base
+
+  roles:
+    - role: netcup-base
+      when: not skip_netcup_base
+    - role: services-base
+      when: not skip_service_base
