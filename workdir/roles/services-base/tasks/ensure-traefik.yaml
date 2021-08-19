@@ -30,13 +30,11 @@
   command: 'doppler setup --token={{traefik_doppler_token}} --no-prompt'
   register: doppler_result
 
-- debug: var=doppler_result
-
 - name: run traefik via npm
-  command: npm start
+  command:
+    cmd: npm start
+    chdir: /home/jb-web-services/services/traefik/
   register: npm_result
-
-- debug: var=npm_result
 # Old way to start traefik (problem: doppler cli will not be started with it)
 # - name: Create and start traefik
 #   docker_compose:
