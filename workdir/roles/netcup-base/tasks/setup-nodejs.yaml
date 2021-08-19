@@ -17,6 +17,6 @@
     state: present
 
 - name: Install Node.js Packages
-  ansible.builtin.apt:
+  apt:
     name: 'nodejs'
     state: latest
