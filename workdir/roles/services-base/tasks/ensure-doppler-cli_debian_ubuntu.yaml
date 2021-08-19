@@ -1,6 +1,6 @@
 ---
 - debug:
-    msg: 'Using ensure-doppler-cli_debian.yaml'
+    msg: 'Using ensure-doppler-cli_debian_ubuntu.yaml'
 
 - name: Update Package Index & install prerequisites
   apt:
