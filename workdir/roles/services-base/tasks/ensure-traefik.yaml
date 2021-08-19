@@ -23,6 +23,9 @@
     modification_time: preserve
     access_time: preserve
 
+# variable comes from traefik-vault.yaml, as described here:
+# https://gist.github.com/tristanfisher/e5a306144a637dc739e7
+# password for that encrypted file is configured in root ansible.cfg
 - name: Setup doppler cli for this project
   command: 'doppler setup --token={{traefik_doppler_token}} --no-prompt'
   register: doppler_result
