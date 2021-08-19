@@ -22,12 +22,13 @@ ssh-encrypt = "bonnie encrypt /root/.ssh/ansible@macos4vserv.key"
 
 # ansible = name of the service where we want to run something inside in docker-compose file
 exec = "docker compose run -T --rm ansible %%"
+# docker compose run is iteractive (-it) by default!
 execInteractive = "docker compose run --rm ansible %%"
 
 # Main Command Shortcuts (Define executables to run inside ansible-controller docker container)
 ansible = "bonnie exec ansible %%"
 ansibleDoc = "bonnie exec ansible-doc %%"
-ansibleVault = "bonnie exec ansible-vault %%"
+ansibleVault = "bonnie execInteractive ansible-vault %%"
 playbook = "bonnie exec ansible-playbook %%"
 
 # Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
@@ -43,7 +44,16 @@ manTomlInventory = "bonnie ansibleDoc -t inventory ansible.builtin.toml"
 # Ansible-Vault shortcuts
 # Note: All filepaths given here must be referenced from 
 # CONTAINER_WORKDIR path in docker-comppose.yml or with absolute path! 
-createEnc = "bonnie ansibleVault create %%"
+
+# Note 2: Do not use "bonnie ansibleVault create %%", since it requires manual input of the file content for the encrypted file
+# Better: Create a yaml vars file and simply encrypt it with "bonnie encrypt"
+
+# How2 use encrypted files: 
+# - place your cleartext file (for example: an ansible yaml file with variables)
+#   somewhere where it's accessible to ansible inside the docker contaienr. 
+#   (easiest place: directly in workdir) 
+# - alternatively: navigate from the workdir folder, for example: 
+#   bonnie encrypt roles/services-base/vars/traefik-secrets.yaml
 encrypt = "bonnie ansibleVault encrypt %%"
 decrypt = "bonnie ansibleVault decrypt %%"
 viewEnc = "bonnie ansibleVault view %%"
