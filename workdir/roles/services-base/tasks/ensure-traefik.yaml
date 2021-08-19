@@ -1,4 +1,6 @@
 ---
+- include_vars: traefik-vault.yaml
+
 - name: Clone Traefik Repo
   git:
     repo: 'git@github.com:bjesuiter/vserv-traefik.git'
