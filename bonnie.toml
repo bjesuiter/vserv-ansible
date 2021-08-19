@@ -34,6 +34,8 @@
     # Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
     init-storage = "bonnie playbook playbooks/storage-1500-init.yaml"
     init-epyc    = "bonnie playbook playbooks/epyc-init.yaml"
+    # sub-category: service shortcuts 
+    nextcloud = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
 
     # Ansible shortcuts 
     ping = "bonnie ansible all -m ping"
