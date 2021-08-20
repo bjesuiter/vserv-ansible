@@ -19,10 +19,8 @@ netcup:
 # Group of vserv hosts
 vserv:
   # List of hosts for that group (children keys: urls of the hosts)
-  hosts:
-    - epyc.avil.io
+  hosts: epyc.avil.io
 
 # Storage Hosts Group
 storage:
-  hosts:
-    - storage-1500.avil.io
+  hosts: storage-1500.avil.io
