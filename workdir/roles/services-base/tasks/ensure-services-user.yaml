@@ -31,7 +31,7 @@
 ### Add private deployment key for jb-web-services
 - name: Create .ssh directory if it does not exist
   file:
-    path: '{{$HOME}}/.ssh'
+    path: '{{HOME}}/.ssh'
     state: directory
     mode: '0700'
   become: yes
@@ -57,7 +57,7 @@
 - name: Copy .bashrc to jb-web-services user
   copy:
     src: '{{ role_path }}/files/user-skeletons/jb-web-services/.bashrc'
-    dest: '{{$HOME}}'
+    dest: '{{HOME}}'
     mode: '0720'
     owner: 'jb-web-services'
     group: 'jb-web-services'

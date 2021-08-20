@@ -1,14 +1,14 @@
 # Ensures, that the 'bonnie' command is available in jb-web-services
 ---
 - include_vars: bonnie-settings.yaml
-- name: Ensure 'bin' folder in services user 
+- name: Ensure 'bin' folder in services user
   file:
-    path: {{$HOME}}/bin
+    path: '{{HOME}}/bin'
     state: directory
     mode: '0770'
 
 - name: download bonnie
   get_url:
     url: 'https://github.com/arctic-hen7/bonnie/releases/download/{{bonnie_version}}/bonnie-linux-amd64'
-    dest: '{{$HOME}}/bin/bonnie'
+    dest: '{{HOME}}/bin/bonnie'
     mode: '0772'
