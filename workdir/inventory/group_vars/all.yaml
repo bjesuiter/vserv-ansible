@@ -2,3 +2,4 @@
 ansible_python_interpreter: /usr/bin/python3
 ansible_user: root
 service_user_home_dir: '/home/jb-web-services'
+$HOME: '{{ lookup('env', 'HOME') }}'
