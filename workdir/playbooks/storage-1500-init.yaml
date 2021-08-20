@@ -5,7 +5,7 @@
     # does not work right now
     # skip_netcup_base: "lookup('env', 'SKIP_NETCUP_BASE') | default('false')"
     # skip_service_base: "lookup('env', 'SKIP_SERVICE_BASE') | default('false')"
-    skip_netcup_base: true
+    skip_netcup_base: false
     skip_service_base: false
 
   pre_tasks:
