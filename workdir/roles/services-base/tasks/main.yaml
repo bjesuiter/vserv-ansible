@@ -7,6 +7,11 @@
   become: yes
   become_user: jb-web-services
 
+- name: ensure bonnie in jb-web-services user
+  include: ensure-bonnie-in-services-user.yaml
+  become: yes
+  become_user: jb-web-services
+
 - include: ensure-doppler-cli_debian_ubuntu.yaml
 
 - include: ensure-traefik.yaml
