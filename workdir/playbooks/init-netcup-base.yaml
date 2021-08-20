@@ -1,0 +1,4 @@
+---
+- hosts: netcup
+  roles:
+    - role: netcup-base
