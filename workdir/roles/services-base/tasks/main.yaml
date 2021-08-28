@@ -13,7 +13,3 @@
   become_user: jb-web-services
 
 - include: ensure-doppler-cli_debian_ubuntu.yaml
-
-- include: ensure-traefik.yaml
-  become: yes
-  become_user: jb-web-services
