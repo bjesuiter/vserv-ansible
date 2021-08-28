@@ -9,18 +9,18 @@ netcup:
     epyc:
       # New AMD Epyc Servers on Netcup - since 27.6.2020
       # see https://www.servercontrolpanel.de/SCP/Home?site_key=ubgkZtY5TSwrgyW2Gy1xhQXKH9bE3Hkh
-      ansible_host: epyc.avil.io
+      ansible_host: epyc.vserv.fun
       # some_other_var: "some value"
 
     storage-1500:
       # New 1,5 TB SAS Storage Server at Netcup - since 11.05.2021
-      ansible_host: storage-1500.avil.io
+      ansible_host: storage1500.vserv.fun
 
 # Group of vserv hosts
 vserv:
   # List of hosts for that group (children keys: urls of the hosts)
-  hosts: epyc.avil.io
+  hosts: epyc.vserv.fun
 
 # Storage Hosts Group
 storage:
-  hosts: storage-1500.avil.io
+  hosts: storage1500.vserv.fun
