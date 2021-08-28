@@ -37,7 +37,7 @@
   become: yes
   become_user: jb-web-services
 
-- name: Copy .ssh files to jb-web-services user
+- name: Copy .ssh, .bashrc and .bash_profile files to jb-web-services user
   copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
@@ -53,13 +53,13 @@
     - src: '{{ role_path }}/files/user-skeletons/jb-web-services/.ssh/config'
       dest: '~/.ssh/config'
       mode: '0644'
+      mode: '0600'
+    - src: '{{ role_path }}/files/user-skeletons/jb-web-services/.bashrc'
+      dest: '{{HOME}}'
+      mode: '0720'
+      mode: '0600'
+    - src: '{{ role_path }}/files/user-skeletons/jb-web-services/.bash_profile'
+      dest: '{{HOME}}'
+      mode: '0720'
 
-- name: Copy .bashrc to jb-web-services user
-  copy:
-    src: '{{ role_path }}/files/user-skeletons/jb-web-services/.bashrc'
-    dest: '{{HOME}}'
-    mode: '0720'
-    owner: 'jb-web-services'
-    group: 'jb-web-services'
-  become: yes
-  become_user: jb-web-services
+
