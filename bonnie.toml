@@ -64,7 +64,9 @@
 
     # Special Ansible-Vault shortcuts
     # -------------------------------
-    view-traefik-vault  = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
-    enc-traefik-vault   = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
-    dec-traefik-vault   = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
+    view-traefik-vault = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
+    enc-traefik-vault  = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
+    dec-traefik-vault  = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
+
     enc-nextcloud-vault = "bonnie encrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
+    enc-minio-vault     = "bonnie encrypt /projects/minio/ansible/service-vault.yaml"
