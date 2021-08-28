@@ -60,17 +60,17 @@
     decrypt    = "bonnie ansibleVault decrypt %%"
     view-vault = "bonnie ansibleVault view %%"
 
-    # Special Ansible-Vault shortcuts
-    # -------------------------------
-    view-traefik-vault = "bonnie view-vault roles/services-base/vars/traefik-vault.yaml"
-    enc-traefik-vault  = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
-    dec-traefik-vault  = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
-
     # Services Playbooks & Helper Scripts 
     # -----------------------------------
-    enc-nextcloud-vault = "bonnie encrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
-    nextcloud           = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
 
+    traefik           = "bonnie playbook /projects/traefik/ansible/init-or-update.yaml"
+    enc-traefik-vault = "bonnie encrypt /projects/traefik/ansible/service-vault.yaml"
+    dec-traefik-vault = "bonnie decrypt /projects/traefik/ansible/service-vault.yaml"
+
+    nextcloud           = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
+    dec-nextcloud-vault = "bonnie decrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
+    enc-nextcloud-vault = "bonnie encrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
+
+    minio           = "bonnie playbook /projects/minio/ansible/init-or-update.yaml"
     enc-minio-vault = "bonnie encrypt /projects/minio/ansible/service-vault.yaml"
     dec-minio-vault = "bonnie decrypt /projects/minio/ansible/service-vault.yaml"
-    minio           = "bonnie playbook /projects/minio/ansible/init-or-update.yaml"
