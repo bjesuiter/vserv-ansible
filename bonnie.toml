@@ -31,11 +31,9 @@
     ansibleVault = "bonnie execInteractive ansible-vault %%"
     playbook     = "bonnie exec ansible-playbook %%"
 
-    # Playbook shortcuts - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
+    # Init Playbooks - referenced from CONTAINER_WORKDIR folder (which equates to /workdir in this project)
     init-netcup-base   = "bonnie playbook playbooks/init-netcup-base.yaml"
     init-services-base = "bonnie playbook playbooks/init-services-base.yaml"
-    # sub-category: service shortcuts 
-    nextcloud = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
 
     # Ansible shortcuts 
     ping = "bonnie ansible all -m ping"
@@ -68,5 +66,10 @@
     enc-traefik-vault  = "bonnie encrypt roles/services-base/vars/traefik-vault.yaml"
     dec-traefik-vault  = "bonnie decrypt roles/services-base/vars/traefik-vault.yaml"
 
+    # Services Playbooks & Helper Scripts 
+    # -----------------------------------
     enc-nextcloud-vault = "bonnie encrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
-    enc-minio-vault     = "bonnie encrypt /projects/minio/ansible/service-vault.yaml"
+    nextcloud           = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
+
+    enc-minio-vault = "bonnie encrypt /projects/minio/ansible/service-vault.yaml"
+    minio           = "bonnie playbook /projects/minio/ansible/init-or-update.yaml"
