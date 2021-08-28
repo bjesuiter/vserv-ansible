@@ -72,4 +72,5 @@
     nextcloud           = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
 
     enc-minio-vault = "bonnie encrypt /projects/minio/ansible/service-vault.yaml"
+    dec-minio-vault = "bonnie decrypt /projects/minio/ansible/service-vault.yaml"
     minio           = "bonnie playbook /projects/minio/ansible/init-or-update.yaml"
