@@ -67,6 +67,10 @@
     enc-traefik-vault = "bonnie encrypt /projects/traefik/ansible/service-vault.yaml"
     dec-traefik-vault = "bonnie decrypt /projects/traefik/ansible/service-vault.yaml"
 
+    traefik-v2           = "bonnie playbook /projects/traefik/ansible/init-or-update_v2.yaml"
+    enc-traefik-v2-vault = "bonnie encrypt /projects/traefik/ansible/service-vault_v2.yaml"
+    dec-traefik-v2-vault = "bonnie decrypt /projects/traefik/ansible/service-vault_v2.yaml"
+
     nextcloud           = "bonnie playbook /projects/nextcloud/ansible/init-or-update.yaml"
     dec-nextcloud-vault = "bonnie decrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
     enc-nextcloud-vault = "bonnie encrypt /projects/nextcloud/ansible/nextcloud-vault.yaml"
