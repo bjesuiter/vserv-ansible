@@ -10,7 +10,6 @@ netcup:
       # New AMD Epyc Servers on Netcup - since 27.6.2020
       # see https://www.servercontrolpanel.de/SCP/Home?site_key=ubgkZtY5TSwrgyW2Gy1xhQXKH9bE3Hkh
       ansible_host: epyc.vserv.fun
-      # some_other_var: "some value"
 
     storage1500:
       # New 1,5 TB SAS Storage Server at Netcup - since 11.05.2021
