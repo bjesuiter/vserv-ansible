@@ -10,7 +10,7 @@
     url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
     state: present
 
-- name: Add NodeSources's desired source repository
+- name: Add Node Sources's desired source repository
   apt_repository:
     repo: deb https://deb.nodesource.com/node_14.x {{ansible_lsb['codename']}} main
     update_cache: yes

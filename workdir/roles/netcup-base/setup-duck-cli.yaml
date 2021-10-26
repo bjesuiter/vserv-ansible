@@ -1,0 +1,20 @@
+---
+# Ensure duck cli is available (to download backups from S3)
+- name: Add Cyberducks's official stable repository
+  apt_repository:
+    repo: deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main
+    filename: cyberduck.list
+    update_cache: yes
+    state: present
+
+# sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72
+- name: Add Cyberducks's official GPG Key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: FE7097963FEFBE72
+    state: present
+
+- name: Install software
+  apt:
+    - duck
+  state: latest
