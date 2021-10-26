@@ -4,7 +4,7 @@
   apt_repository:
     repo: deb https://s3.amazonaws.com/repo.deb.cyberduck.io stable main
     filename: cyberduck.list
-    update_cache: yes
+    update_cache: false
     state: present
 
 # sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE7097963FEFBE72
@@ -16,6 +16,7 @@
 
 - name: Install software
   apt:
+    update_cache: yes
     name:
       - duck
     state: latest
