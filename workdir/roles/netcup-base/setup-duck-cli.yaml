@@ -16,5 +16,6 @@
 
 - name: Install software
   apt:
-    - duck
-  state: latest
+    name:
+      - duck
+    state: latest
