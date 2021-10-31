@@ -7,6 +7,7 @@
 # NOTE: These scripts use the new `docker compose` (without a dash) command
 # See: https://docs.docker.com/compose/cli-command/ 
 # And: https://docs.docker.com/compose/cli-command-compatibility/
+version = "0.3.2"
 
 [scripts]
     start = "echo 'This docker-compose does not need to be startet. Each exec will start it's own container.' "
