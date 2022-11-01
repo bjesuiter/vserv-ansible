@@ -1,8 +1,16 @@
 ---
+# sets up python and pip to prepare target server for ansible executions
 - import_tasks: setup-ansible-target.yaml
-- import_tasks: setup-nodejs.yaml
-- import_tasks: setup-duck-cli.yaml
+
+# since you're using this repo, you definitely want to install the docker engine on your system!
 - import_tasks: setup-docker-engine_ubuntu.yaml
   when: ansible_facts['distribution']|lower == 'ubuntu'
 - import_tasks: setup-docker-engine_debian.yaml
   when: ansible_facts['distribution']|lower == 'debian'
+
+# since you're using this repo, you probably also want nodejs on the server to execute commands with nx :D
+- import_tasks: setup-nodejs.yaml
+## Optional installs
+
+# A cli for transfering files via many protocols and to many targets, like ftp, sftp, ssh and s3
+- import_tasks: setup-duck-cli.yaml
