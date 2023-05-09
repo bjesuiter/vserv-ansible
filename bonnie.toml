@@ -69,6 +69,7 @@ version = "0.3.2"
     dec-traefik-vault = "bonnie decrypt /projects/traefik/ansible/service-vault.yaml"
 
     traefik-v2           = "bonnie playbook /projects/traefik/ansible/init-or-update_v2.yaml"
+    traefik-v2-epyc      = "bonnie playbook /projects/traefik/ansible/init-or-update_v2_epyc.yaml"
     enc-traefik-v2-vault = "bonnie encrypt /projects/traefik/ansible/service-vault_v2.yaml"
     dec-traefik-v2-vault = "bonnie decrypt /projects/traefik/ansible/service-vault_v2.yaml"
 
