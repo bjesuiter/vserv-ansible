@@ -8,8 +8,12 @@
 - import_tasks: setup-docker-engine_debian.yaml
   when: ansible_facts['distribution']|lower == 'debian'
 
-# since you're using this repo, you probably also want nodejs on the server to execute commands with nx :D
+# since you're using this repo, you probably also want nodejs on the server to execute commands with npx :D
 - import_tasks: setup-nodejs.yaml
+
+# alternatively you could use bun!
+- import_tasks: setu-bun.yaml
+
 ## Optional installs
 
 # A cli for transfering files via many protocols and to many targets, like ftp, sftp, ssh and s3

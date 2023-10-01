@@ -5,18 +5,17 @@
     repo: 'ppa:chris-lea/node.js'
     state: absent
 
-- name: Add NodeSource's official GPG Key
-  apt_key:
-    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-    state: present
-
-- name: Add Node Sources's desired source repository
+- name: Remove old repository sources
   apt_repository:
     repo: deb https://deb.nodesource.com/node_14.x {{ansible_lsb['codename']}} main
-    update_cache: yes
-    state: present
+    state: absent
 
-- name: Install Node.js Packages
-  apt:
-    name: 'nodejs'
-    state: latest
+# classic: Confinement policy.
+# The classic confinement allows a snap to have the same level of access to the system as “classic” packages,
+# like those managed by APT.
+- name: Install node snap
+  community.general.snap:
+    name: node
+    classic: yes
+    channel: 20/stable
+    state: present
